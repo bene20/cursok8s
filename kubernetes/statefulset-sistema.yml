@@ -14,9 +14,13 @@ spec:
     spec:
       containers:
         - name: container-aplicacao-sistema-statefulset
-          image: bene20/noticias-alura:v2
+          image: bene20/noticias-alura:vs
           ports:
             - containerPort: 80
+          lifecycle:
+            postStart:
+              exec:
+                command: ["sh", "enviarMensagens.sh"]
           volumeMounts:
             - name: imagens
               mountPath: /var/www/html/uploads

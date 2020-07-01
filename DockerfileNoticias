@@ -3,3 +3,4 @@ FROM jnlucas/image-phpmysql:latest
 # utilizado para portal de notícias (v3)
 RUN echo "Making v3"
 COPY noticias /var/www/html
+RUN chmod -R 775 /var/www
