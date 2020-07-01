@@ -45,8 +45,10 @@ fi
 echo "============================================"
 echo "Encerrando o Minikube caso esteja de pé..."
 minikube stop
+echo "============================================"
 echo "Excluindo potencial cluster antigo do Minikube..."
 minikube delete
+echo "============================================"
 echo "Carregando o Minikube..."
 minikube start
 
@@ -63,7 +65,14 @@ kubectl create -f kubernetes/servico-statefulset.yml
 kubectl create -f kubernetes/statefulset-sistema.yml
 
 echo "============================================"
+echo "Registrando o autoscale do deployment de notícias..."
+minikube addons enable metrics-server
+minikube addons enable logviewer
+kubectl autoscale deployment aplicacao-noticia-deployment --cpu-percent=20 --min=1 --max=10
+
+echo "============================================"
 echo "Listando os dados de acesso à aplicação que roda no cluster:"
 minikube service list
+
 
 cd $oldDir

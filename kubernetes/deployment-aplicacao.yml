@@ -14,6 +14,8 @@ spec:
       containers:
         - name: container-aplicacao
           image: bene20/noticias-alura:vn
+          resources:
+            requests:
+              cpu: 400m
           ports:
             - containerPort: 80
-
