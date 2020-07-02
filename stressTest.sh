@@ -1,8 +1,8 @@
 #!/bin/bash
 
 urlServico="http://172.17.0.7:31262"
-numRequisicoes=10000
-qtdReqsSimultaneas=10
+numRequisicoes=999999
+qtdReqsSimultaneas=100
 
 #Manual: https://www.petefreitag.com/item/689.cfm
 

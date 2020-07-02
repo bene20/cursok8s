@@ -36,10 +36,26 @@ if simOuNao; then
   echo "============================================"
   echo "Gerando imagens das aplicações 'noticia' e 'sistema'"
   cd $workdir
-  ./makeImages.sh <<EOF
-1
-1
-EOF
+  
+  echo "(Re)fazer o build da imagem de sistema?"
+  if simOuNao; then
+    #VS (sistema)
+    cp DockerfileSistema Dockerfile
+    docker image build -t imagem-sistema .
+    rm -f Dockerfile
+    docker image tag imagem-sistema bene20/noticias-alura:vs
+    docker image push bene20/noticias-alura:vs
+  fi
+  
+  echo "(Re)fazer o build da imagem de noticias?"
+  if simOuNao; then
+    #VN (noticias)
+    cp DockerfileNoticias Dockerfile
+    docker image build -t noticias-alura .
+    rm -f Dockerfile
+    docker image tag noticias-alura bene20/noticias-alura:vn
+    docker image push bene20/noticias-alura:vn
+  fi
 fi
 
 echo "============================================"
