@@ -15,20 +15,20 @@ simOuNao(){
   echo
 }
 
-echo "Recriar base de dados do projeto?"
-if simOuNao; then
-  echo "============================================"
-  echo "(Re)criando base de dados da aplicação"
-  cd $workdir/mysql
-  sh import.sh
-fi
-
 echo "Subir o container de banco de dados do projeto?"
 if simOuNao; then
   echo "============================================"
   echo "Subindo o container do mysql"
   cd $workdir/mysql
   docker-compose up -d
+fi
+
+echo "Recriar base de dados do projeto?"
+if simOuNao; then
+  echo "============================================"
+  echo "(Re)criando base de dados da aplicação"
+  cd $workdir/mysql
+  sh import.sh
 fi
 
 echo "Regerar as imagens das aplicações 'noticia' e 'sistema'?"
